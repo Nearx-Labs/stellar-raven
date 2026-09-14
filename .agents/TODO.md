@@ -10,10 +10,20 @@ archive. Each item states what is wrong, how it was found, and what "done" means
 Updated 2026-09-09 during issue #141 and upstream handoff verification.
 Rejected-candidate retirement and OAuth completion were recorded on 2026-09-10.
 The OAuth record is [the consent completion ledger](rounds/2026-09-10-oauth-consent.md).
-The current ledger is `.agents/rounds/2026-09-09-outstanding-closeout.md`. The ranked handoff is
+The current ledger is `.agents/rounds/2026-09-14-truth-maintenance.md`. The ranked handoff is
 `NEXT.md`.
 
 ## Improvements follow-up
+
+### Complete the September 14 source-metadata follow-up before 2026-10-01
+
+The freshness audit found a dead CLI cookbook link in `q-ti-stellar-lab-usage-and-new-ui`.
+It also identified dated x402 board membership and builder-population facts in sibling cases.
+Use `research/audits/2026-09-14-golden-freshness-review.md` for the exact cases and replacement source.
+Apply the golden-truth workflow to source metadata and any factual changes.
+Preserve historical observations and scheduled dates unless new verification supports a change.
+
+Done when: the source link works, sibling claims have current evidence, and the corpus gates pass.
 
 ### Finish authenticated production acceptance for playground #40
 
@@ -26,33 +36,29 @@ Close #40 after that acceptance check. Use `rounds/2026-09-08-maintenance-execut
 
 Done when: the production copy check passes and #40 records its closure.
 
-### Re-check `sd-027` and `sd-034` after PR #2367 receives a maintainer decision
+### Re-check `sd-027` and `sd-034` after PR #2837 receives a maintainer decision
 
-PR https://github.com/stellar/stellar-docs/pull/2367 restarted on 2026-09-08.
-Its refreshed head passes checks and fixes the two smart-wallet reference pages.
-The combined Guestbook rewrite still targets Smart Account Kit 0.2.x behavior and Cloudflare Pages.
-The selected ElliotFriend companion uses Smart Account Kit 0.6.2 and Vercel.
-The PR carries `bot:needs-decision` while maintainers choose whether to split or update the tutorial.
+PR https://github.com/stellar/stellar-docs/pull/2367 closed without merge on 2026-09-09.
+The maintainer named https://github.com/stellar/stellar-docs/pull/2837 as its replacement.
+The September 14 audit found passing checks but no approval on the replacement PR.
 
-Re-check the PR when that label clears, its head changes, or it closes.
+Re-check the replacement PR on 2026-09-21, or earlier if its head changes or it closes.
 If it merges and deploys, run both original live page checks before changing either finding.
 Do not post a status comment while the maintainers are already working on the decision.
-Use `.agents/rounds/2026-09-08-improvements-followups.md` for the current state.
+Use `.agents/rounds/2026-09-14-truth-maintenance.md` for the current state.
 
 Done when: each finding records the resulting live state, and any fixed finding completes the resolver gates.
 
-### Re-check `sd-037` issue #1981 after 2026-09-13
+### Decide the follow-up for stale-bot-closed `sd-037`
 
-Issue https://github.com/stellar/stellar-protocol/issues/1981 was open on 2026-09-04.
-Its only comment was the 2026-08-14 stale-bot notice.
-Do not post a keep-alive comment.
+Issue https://github.com/stellar/stellar-protocol/issues/1981 closed as `NOT_PLANNED` on 2026-09-14.
+The September 14 source check still reproduces the missing proposal index.
+The closure followed a stale-bot warning, not a maintainer scope decision.
+Keep the finding reported upstream. Do not post a keep-alive comment.
+At the next owner review, decide whether to reopen the issue or propose a successor.
+Evidence: `.agents/rounds/2026-09-14-truth-maintenance.md`.
 
-On the next improvements round after 2026-09-13, read the issue state.
-If the stale bot closed it, record `closed-unfixed` evidence and keep `sd-037` reported upstream.
-If it remains open, record the state only.
-Use `.agents/rounds/2026-09-03-truth-maintenance/finding-recurrences-terra.md` for the current evidence.
-
-Done when: the next state read is recorded without an upstream reminder comment.
+Done when: an owner decides the follow-up based on the original trigger and current upstream scope.
 
 ## Recovery
 

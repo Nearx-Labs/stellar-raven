@@ -154,6 +154,32 @@ describe("QA corpus lint lanes", () => {
     expect(findings.map((item) => item.message).join("\n")).toMatch(/ADR-0003 leak/);
   });
 
+  it.each([
+    [["improvements/resolved.json entry sd-042"], false],
+    [["improvements/resolved.json"], false],
+    [["improvements/stellar-docs/sd-003.md"], true],
+    [["improvements/resolved.json entry sd-042", "improvements/stellar-docs/sd-003.md"], true],
+    [["improvements/resolved.json entry sd-042; improvements/stellar-docs/sd-003.md"], true],
+    [["improvements/resolved.json.md"], true],
+    [["`improvements/stellar-docs/sd-003.md`"], true],
+    [["(improvements/stellar-docs/sd-003.md)"], true],
+    [["improvements/resolved.json;improvements/stellar-docs/sd-003.md"], true],
+    [["improvements/resolved.json,improvements/stellar-docs/sd-003.md"], true],
+    [["`improvements/resolved.json`; `improvements/stellar-docs/sd-003.md`"], true],
+    [["`improvements/resolved.json`"], false],
+    [["(improvements/resolved.json)"], false],
+    [["improvements/resolved.json."], false],
+    [["improvements/resolved.json. improvements/stellar-docs/sd-003.md."], true],
+  ])("distinguishes resolved receipts from active caution references: %j", (rootCause, warns) => {
+    const findings = lintGoldenAuthoring([{
+      id: "q-resolved-caution",
+      question: "What does the source say?",
+      golden: { notes: "The former source conflict no longer applies." },
+      truth: { verified: { rootCause } },
+    }]);
+    expect(findings.some((item) => item.lane === "symmetric-caution")).toBe(warns);
+  });
+
   it("seeds all register hashes without reopening, then reopens known changes", () => {
     const register = {
       clusters: [{ id: "storage", members: ["q-fixture-gospel"], verdict: "consistent" }],

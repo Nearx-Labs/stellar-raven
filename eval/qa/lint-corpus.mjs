@@ -529,7 +529,8 @@ export function lintGoldenAuthoring(cases) {
       }
     }
     const hasImprovementRootCause = (kase.truth?.verified?.rootCause ?? [])
-      .some((item) => /(?:^|\s)improvements\//i.test(String(item)));
+      .some((item) => [...String(item).matchAll(/(?:^|[\s`"'([,;])(improvements\/[^\s`"'<>()\[\],;]+)/gi)]
+        .some((match) => !/^improvements\/resolved\.json\.?$/i.test(match[1])));
     if (hasImprovementRootCause && !hasSymmetricCaution(kase.golden?.notes)) {
       findings.push(finding("warn", "symmetric-caution", kase.id, "improvements/ rootCause has no symmetric canonical-source grading caution in golden.notes"));
     }
